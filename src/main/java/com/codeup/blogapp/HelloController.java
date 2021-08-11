@@ -25,4 +25,11 @@ public class HelloController {
     public String sayHello(@PathVariable String name){
         return "Hello " + name + "!";
     }
+
+
+    @GetMapping("/home")
+    public String welcome(){
+        return "home";
+    }
+
 }
