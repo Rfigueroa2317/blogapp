@@ -65,7 +65,7 @@ public class PostsController {
         System.out.println(id);
     }
 
-    // curl is for your terminal
+    // curl is for your terminal to try
 
 
 }
