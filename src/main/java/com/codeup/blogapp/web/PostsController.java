@@ -47,4 +47,25 @@ public class PostsController {
 
     }
 
+    @PostMapping
+    private void createPost(@RequestBody Post newPost){
+        System.out.println(newPost.getTitle());
+        System.out.println(newPost.getContent());
+    }
+
+    @PutMapping("{/id}")
+    private void updatePost(@PathVariable Long id, @RequestBody Post post){
+        System.out.println(post.getTitle());
+        System.out.println(post.getContent());
+        System.out.println(post.getTitle());
+    }
+
+    @DeleteMapping("{id}")
+    private void deletePost(@PathVariable Long id){
+        System.out.println(id);
+    }
+
+    // curl is for your terminal
+
+
 }
