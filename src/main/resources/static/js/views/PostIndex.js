@@ -1,3 +1,5 @@
+import createView from "../createView.js";
+
 export default function PostIndex(props) {
     return `
         <header>
@@ -23,12 +25,15 @@ export default function PostIndex(props) {
             <div class="post-container">
                 ${props.posts.map(post =>`<h3 >${post.title}</h3><h2>${post.content}</h2>`).join('')}
             </div>
+</div>
         </main>
     `;
 }
 
 
 export function postsEvent(){
+    createPostEvent();
+    editEvent();
 
     // its function is to add event listener, then after you add it, you're going to get the data from the post
     //  and then make a fetch request (method: post) which it will add a new blog post to the data base.
@@ -36,13 +41,54 @@ export function postsEvent(){
     const form = $('<form></form>');
     form.attr("method", "post");
     form.attr("action", "path");
-    const field = $('<input></input>');
+    const field = $('<input>' +
+        'dfdfdddsfss</input>');
 
     field.attr("submit", "submit");
 
     form.append(field);
     $(document.body).append(form);
     form.submit();
+}
+
+function createPostEvent(){
+    $("#create-post-btn").click(function(){
+        let post = {
+            title: $("#title").val(),
+            content: $("#content").val()
+        }
+
+        let request = {
+            method: "POST",
+            headers : {"Content-type":"application/json"},
+            body: JSON.stringify(post)
+        }
+
+        fetch("http://localhost:8080/api/posts", request)
+            .then(res => {
+                console.log(res.status);
+                createView("/posts")
+            }).catch(error => {
+            console.log(error);
+            createView("/posts")
+        })
+    })
+}
+
+function editEvent(){
+    $(".edit-post-btn").click(function (){
+
+        console.log("edit event fired off");
+        $(this).siblings("[contentEditable=true]");
+        $(this).text("Save");
+
+        // get edit fields data - make a post object
+
+        // make a request obj
+
+        // send fetch request
+
+    })
 }
 
 
