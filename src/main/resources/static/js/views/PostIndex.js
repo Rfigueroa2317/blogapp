@@ -8,19 +8,10 @@ export default function PostIndex(props) {
         <main>
 <!--        MAKE CREATE FORM HERE-->
                 <form>
-                <div class="form-group">
-                    <label for="post-id">post-id</label>
-                    <input id="post-id" type="text" class="form-control" placeholder="Id">
-                </div>
-                <div class="form-group">
-                     <label for="title-id">title</label>
-                    <input id=title" type="text" class="form-control" placeholder="title">
-                </div>
-                <div class="form-group">
-                     <label for="content">content</label>
-                    <input id="content" type="text" class="form-control" placeholder="content">
-                </div>
-                    <button type="submit" id="submit" class="btn btn-primary">submit</button>
+                    <input id="post-id" type="text" placeholder="Id">
+                    <input id=title" type="text" placeholder="title">
+                    <input id="content" type="text" placeholder="content">
+                    <button type="submit" id="submit">submit</button>
                 </form>
             <div class="post-container">
                 ${props.posts.map(post =>`<h3 >${post.title}</h3><h2>${post.content}</h2>`).join('')}
@@ -38,21 +29,21 @@ export function postsEvent(){
     // its function is to add event listener, then after you add it, you're going to get the data from the post
     //  and then make a fetch request (method: post) which it will add a new blog post to the data base.
 
-    const form = $('<form></form>');
-    form.attr("method", "post");
-    form.attr("action", "path");
-    const field = $('<input>' +
-        'dfdfdddsfss</input>');
-
-    field.attr("submit", "submit");
-
-    form.append(field);
-    $(document.body).append(form);
-    form.submit();
+    // const form = $('<form></form>');
+    // form.attr("method", "posts");
+    // form.attr("action", "post");
+    // const field = $('<input>' +
+    //     'dfdfdddsfss</input>');
+    //
+    // field.attr("submit", "submit");
+    //
+    // form.append(field);
+    // $(document.body).append(form);
+    // form.submit();
 }
 
 function createPostEvent(){
-    $("#create-post-btn").click(function(){
+    $("#submit").click(function(){
         let post = {
             title: $("#title").val(),
             content: $("#content").val()
@@ -80,7 +71,16 @@ function editEvent(){
 
         console.log("edit event fired off");
         $(this).siblings("[contentEditable=true]");
-        $(this).text("Save");
+        $(this).text("Posts");
+
+        fetch("http://localhost:8080/api/posts", request)
+            .then(res => {
+                console.log(res.status);
+                createView("/posts")
+            }).catch(error => {
+            console.log(error);
+            createView("/posts")
+        })
 
         // get edit fields data - make a post object
 
@@ -89,5 +89,24 @@ function editEvent(){
         // send fetch request
 
     })
+
+
+    function deleteEvent(){
+        $(".delete-post-btn").click(function (){
+            console.log("delete event fired off");
+            $(this).siblings("[contentDeletable=true]");
+            $(this).text("Posts");
+
+            fetch("http://localhost:8080/api/posts", request)
+                .then(res => {
+                    console.log(res.status);
+                    createView("/posts")
+                }).catch(error => {
+                console.log(error);
+                createView("/posts")
+            })
+        })
+    }
+
 }
 

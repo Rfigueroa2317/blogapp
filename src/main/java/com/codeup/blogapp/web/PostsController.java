@@ -23,7 +23,7 @@ public class PostsController {
     }
 
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     private Post getPostById(@PathVariable Long id){
         // /api/posts/1
         if(id == 1) {
@@ -33,19 +33,6 @@ public class PostsController {
             return null;
         }
     }
-
-//    @GetMapping
-//    public List<Post> getPosts(){
-//        return new ArrayList<Post>(){{
-//            add(new Post(1L, "A new Post",
-//                    "this is a believable value"));
-//            add(new Post(2L, "A new Post 2",
-//                    "this is another believable value"));
-//            add(new Post(3L, "The new Post 3",
-//                    "this is the most believable value of the three"));
-//        }};
-//
-//    }
 
     @PostMapping
     private void createPost(@RequestBody Post newPost){
@@ -57,7 +44,7 @@ public class PostsController {
     private void updatePost(@PathVariable Long id, @RequestBody Post post){
         System.out.println(post.getTitle());
         System.out.println(post.getContent());
-        System.out.println(post.getTitle());
+        System.out.println(id);
     }
 
     @DeleteMapping("{id}")
