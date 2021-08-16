@@ -108,6 +108,7 @@ function editEvent(){
     //         form.append(field);
     //     });
     //
+
     //     // The form needs to be a part of the document in
     //     // order for us to be able to submit it.
     //     $(document.body).append(form);
