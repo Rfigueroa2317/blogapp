@@ -11,6 +11,8 @@ export default function Register(registration) {
 <form id=""register-form>
     <label for="username">Username</label>
     <input id="username" name="username" type="text"/>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="text"/>
     <label for="password">Password</label>
     <input id="password" name="password" type="password"/>
     <input id="login-btn" type="submit" value="Log In"/>
