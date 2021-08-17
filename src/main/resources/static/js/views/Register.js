@@ -18,26 +18,26 @@ export default function Register(registration) {
                 <input id="email" name="email" type="text"/>
                 <label for="password">Password</label>
                 <input id="password" name="password" type="password"/>
-                <input id="login-btn" type="submit" value="Log In"/>
+                <input id="register-btn" type="button" value="Register"/>
             </form>
-            
             
         </body>
     </html>`;
 }
-function RegisterEvent() {
-    $("#register-form").click(function () {
+export function RegisterEvent() {
+    $("#register-btn").click(function () {
+        let user = {
+            username: $("#username").val(),
+            email: $("#email").val(),
+            password: $("#password").val()
+        }
         let request = {
             method: "POST",
-            body: {"Content-type": "application/json"},
+            header: {"Content-type": "application/json"},
+            body: JSON.stringify(post)
         }
-        fetchData(
-            {
-                route: `/api/users`
-            },
-            request).then((data) => {
+        fetch("http://localhost:8080/api/users").then((response) => {
             console.log(request.status);
-            setTokens(data);
             createView("/");
         });
     })
