@@ -1,4 +1,5 @@
 import createView from "../createView.js";
+import fetchData from "../fetchData";
 
 export default function PostIndex(props) {
     return `
@@ -116,4 +117,18 @@ function editEvent() {
         })
     }
 
+function registerEvent() {
+    $("#register-form").click(function (){
+        let request = {
+            method: "POST",
+            body: {"Content-type": "applicatoin/json"},
+        };
 
+        fetch(
+            {
+
+            }
+        )
+
+    })
+}
