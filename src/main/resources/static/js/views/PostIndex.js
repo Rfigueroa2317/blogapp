@@ -36,6 +36,7 @@ export function postsEvent(){
     createPostEvent();
     editEvent();
     deleteEvent();
+    RegisterEvent();
 
 }
 
@@ -117,18 +118,20 @@ function editEvent() {
         })
     }
 
-function registerEvent() {
+function RegisterEvent() {
     $("#register-form").click(function (){
         let request = {
             method: "POST",
             body: {"Content-type": "applicatoin/json"},
-        };
-
-        fetch(
+        }
+        fetchData(
             {
-
-            }
-        )
-
+               route: `http://localhost:8080/api/users`
+        },
+            request).then((data) => {
+            console.log(res.status);
+                setTokens(data);
+                createView("/register");
+            });
     })
 }
