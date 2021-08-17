@@ -13,10 +13,10 @@ public class UsersController {
 
     @GetMapping
     private List<User> getUser() {
-        return new ArrayList<User>() {{
+        return new ArrayList<>() {{
 
             add(new User(1L, "Random",
-                    "randomemail", "password", User.Role.USER));
+                    "random email", "password", User.Role.USER));
 
             add(new User(2L, "Random",
                     "random email", "password", User.Role.USER));
@@ -27,11 +27,11 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    private Post getUserById(@PathVariable Long id){
+    private User getUserById(@PathVariable Long id){
         // /api/posts/1
         if(id == 1) {
-            return new Post(1L, "A new User",
-                    "this is a brilliant post. 10/10");
+            return new User(1L, "Random",
+                    "random email", "password");
         }else{
             return null;
         }
