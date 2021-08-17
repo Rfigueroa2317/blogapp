@@ -3,7 +3,7 @@ import createView from "../createView";
 
 export default function Register(registration) {
     return `<!DOCTYPE html>
-     <html>
+     <html lang="eng">
         <head>
             <meta charset="UTF-8"/>
             <title>Register</title>
@@ -20,7 +20,7 @@ export default function Register(registration) {
                 <input id="password" name="password" type="password"/>
                 <input id="register-btn" type="button" value="Register"/>
             </form>
-            
+
         </body>
     </html>`;
 }
@@ -38,7 +38,7 @@ export function RegisterEvent() {
         }
         fetch("http://localhost:8080/api/users").then((response) => {
             console.log(request.status);
-            createView("/");
+            createView("/posts");
         });
     })
 }

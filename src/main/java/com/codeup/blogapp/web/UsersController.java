@@ -11,31 +11,29 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
-    User user = new User(1L,"hello","random email","password",user);
-
-    List<Post> posts = new ArrayList<>(){{
-        add(new Post(1L, "Random",
-                "random email", "password", user));
-
-        add(new Post(2L, "Random",
-                "random email", "password", user));
-
-        add(new Post(3L, "Random",
-                "random email", "password", user));
-    }};
 
     @GetMapping
     private List<User> getUsers() {
-        return new ArrayList<>() {{
+        User user = new User(1L,"hello","random email","password", User.Role.USER, null);
+        List<Post> posts = new ArrayList<>(){{
+            add(new Post(1L, "Random",
+                    "random email", user));
 
+            add(new Post(2L, "Random",
+                    "random email", user));
+
+            add(new Post(3L, "Random",
+                    "random email", user));
+        }};
+        return new ArrayList<>() {{
             add(new User(1L, "Random",
-                    "random email", "password", User.Role.USER));
+                    "random email", "password", User.Role.USER, posts));
 
             add(new User(2L, "Random",
-                    "random email", "password", User.Role.USER));
+                    "random email", "password", User.Role.USER, posts));
 
             add(new User(3L, "Random",
-                    "random email", "password", User.Role.USER));
+                    "random email", "password", User.Role.USER, posts));
         }};
     }
 
@@ -44,7 +42,7 @@ public class UsersController {
         // /api/posts/1
         if(id == 1) {
             return new User(1L, "Random",
-                    "random email", "password", User.Role.USER);
+                    "random email", "password", User.Role.USER, null);
         }else{
             return null;
         }
