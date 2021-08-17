@@ -116,22 +116,4 @@ function editEvent() {
                 createView("/posts")
             })
         })
-    }
-
-function RegisterEvent() {
-    $("#register-form").click(function (){
-        let request = {
-            method: "POST",
-            body: {"Content-type": "applicatoin/json"},
-        }
-        fetchData(
-            {
-               route: `http://localhost:8080/api/users`
-        },
-            request).then((data) => {
-            console.log(res.status);
-                setTokens(data);
-                createView("/register");
-            });
-    })
 }

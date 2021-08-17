@@ -13,12 +13,13 @@ public class User {
 
     public enum Role {USER, ADMIN};
 
-    public User(long id, String username, String email, String password /*, LocalDateTime createdAt */) {
+    public User(long id, String username, String email, String password, Role role /*, LocalDateTime createdAt */) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
 //        this.createdAt = createdAt;
+        this.role = role;
     }
 
     public User() {
@@ -56,4 +57,11 @@ public class User {
         this.password = password;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
