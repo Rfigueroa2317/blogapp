@@ -11,8 +11,21 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
+    User user = new User(1L,"hello","random email","password",user);
+
+    List<Post> posts = new ArrayList<>(){{
+        add(new Post(1L, "Random",
+                "random email", "password", user));
+
+        add(new Post(2L, "Random",
+                "random email", "password", user));
+
+        add(new Post(3L, "Random",
+                "random email", "password", user));
+    }};
+
     @GetMapping
-    private List<User> getUser() {
+    private List<User> getUsers() {
         return new ArrayList<>() {{
 
             add(new User(1L, "Random",
@@ -31,7 +44,7 @@ public class UsersController {
         // /api/posts/1
         if(id == 1) {
             return new User(1L, "Random",
-                    "random email", "password");
+                    "random email", "password", User.Role.USER);
         }else{
             return null;
         }
@@ -40,6 +53,7 @@ public class UsersController {
     @PostMapping
     private void createUser(@RequestBody User newUser){
         System.out.println(newUser.getUsername());
+//        return new User;
     }
 
     @PutMapping("{id}")
@@ -47,11 +61,13 @@ public class UsersController {
 //        System.out.println(user.getTitle());
 //        System.out.println(user.getContent());
         System.out.println(id);
+
     }
 
     @DeleteMapping("{id}")
     private void deleteUser(@PathVariable Long id){
         System.out.println(id);
+//        return new User;
     }
 
     // curl is for your terminal to try

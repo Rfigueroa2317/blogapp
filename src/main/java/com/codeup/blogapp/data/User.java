@@ -1,6 +1,7 @@
 package com.codeup.blogapp.data;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 public class User {
 
@@ -10,16 +11,23 @@ public class User {
     private String password;
 //    private LocalDateTime createdAt;
     private Role role = Role.USER;
+    private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};
 
-    public User(long id, String username, String email, String password, Role role /*, LocalDateTime createdAt */) {
+
+    public User(long id, String username, String email, String password, Role role, Collection<Post> posts /*, LocalDateTime createdAt */) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
 //        this.createdAt = createdAt;
         this.role = role;
+        this.posts = posts;
+    }
+
+    public User(String username){
+        this.username = username;
     }
 
     public User() {
@@ -63,5 +71,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Collection<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Collection<Post> posts) {
+        this.posts = posts;
     }
 }
