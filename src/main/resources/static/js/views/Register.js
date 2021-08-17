@@ -1,0 +1,20 @@
+export default function Register(registration) {
+    return `<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    </head>
+    <body>
+    <h1>Register</h1>
+    
+<form id=""register-form>
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text"/>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password"/>
+    <input id="login-btn" type="submit" value="Log In"/>
+</form>
+</body>
+</html>`;
+}
