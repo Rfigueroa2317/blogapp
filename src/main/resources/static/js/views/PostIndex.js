@@ -1,6 +1,5 @@
 import createView from "../createView.js";
 import {RegisterEvent} from "./Register.js";
-import fetchData from "../fetchData";
 export default function PostIndex(props) {
     return `
         <header>

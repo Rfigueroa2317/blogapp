@@ -1,5 +1,4 @@
-import fetchData from "../fetchData";
-import createView from "../createView";
+import createView from "../createView.js";
 
 export default function Register(registration) {
     return `<!DOCTYPE html>
@@ -34,7 +33,7 @@ export function RegisterEvent() {
         let request = {
             method: "POST",
             header: {"Content-type": "application/json"},
-            body: JSON.stringify(post)
+            body: JSON.stringify(user)
         }
         fetch("http://localhost:8080/api/users").then((response) => {
             console.log(request.status);
