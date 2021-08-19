@@ -11,6 +11,10 @@ export default function PostIndex(props) {
                     <input id="post-id" type="text" placeholder="Id">
                     <input id=title" type="text" placeholder="title">
                     <input id="content" type="text" placeholder="content">
+                    <select>
+                    <option value="">-- Select a Category --</option>
+                    ${props.categories.map(category => `<option>${category.name}</option>`)}
+                    </select>
                     <button type="submit" id="submit">submit</button>
                     
                 </form>

@@ -43,5 +43,12 @@ public class CategoriesController {
         return category;
     }
 
-}
+    @GetMapping
+    private Category getPostsByCategory(){
+
+        return new Category(1L, "test");
+
+
+        }
+    }
 
