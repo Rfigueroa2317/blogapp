@@ -15,26 +15,43 @@ export default function PostIndex(props) {
                     
                 </form>
             <div>
-                ${props.posts.map(post =>`
-                <div>
-                    <h3 class="title-edit">${post.title}</h3>
+               ${getPostsComponent(props.posts)}
+           
+        </div>
+        </main>
+        `;
+    
+}
+
+function getPostsComponent(){
+return posts.map(post =>`
+               <div class="post">
+               
+                   <h3 class="title-edit">${post.title}</h3>
                     <h2 class="content-edit">${post.content}</h2>
-                    <h2 class="username">${post.user.username}</h2>
-                    ${post.categories.map(category => `
+                    <h2 class="username">Posted By: ${post.user.username}</h2>
+                    <div class="categories">
+                    ${(post.categories).map(category => `
+                    </div>
                     <h4 class="category">${category.name}</h4>
-                    
-                    `)}
+        `)}
                     <button type="button" class="edit" data-id=${post.id}>Edit</button>
                         <button type="button" class="delete" data-id=${post.id}>Delete</button>
                     
                  </div>
-                `).join('')}
-           
-        </div>
-        </main>
-    `;
-}
+                `).join('')
+};
 
+function getCategoriesComponent(categories){
+
+    console.log(categories);
+    return categories.map(category => {
+        `
+        <span>#${category.name}</span>
+        
+        `
+    }).join('')
+}
 
 export function postsEvent(){
     createPostEvent();
