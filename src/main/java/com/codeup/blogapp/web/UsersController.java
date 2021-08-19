@@ -4,6 +4,8 @@ import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +69,21 @@ public class UsersController {
         System.out.println(id);
 //        return new User;
     }
+
+//    @GetMapping
+//    private void findByUsername(@RequestParam String username){
+//        System.out.println(username);
+//    }
+//
+//    @GetMapping
+//    private void findByEmail(@RequestParam String email){
+//        System.out.println(email);
+//    }
+
+//    @GetMapping
+//    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+//        System.out.println(newPassword);
+//    }
 
     // curl is for your terminal to try
 
