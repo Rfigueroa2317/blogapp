@@ -1,5 +1,6 @@
 package com.codeup.blogapp.web;
 
+import com.codeup.blogapp.data.Category;
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/posts",headers = "Accept=application/json")
 public class PostsController {
+   List<Category> categories = new ArrayList<Category>(){{
+       add (new Category(1L, "test"));
+       add (new Category(2L, "test 2"));
+       add (new Category(3L, "test 3"));
+   }};
+
 
     @GetMapping
     private List<Post> getPosts() {
@@ -18,11 +25,11 @@ public class PostsController {
 
         return new ArrayList<Post>(){{
             add(new Post(1L, "A new Post",
-                    "this is a brilliant post. 10/10", user));
+                    "this is a brilliant post. 10/10", user, categories));
             add(new Post(2L, "A new Post",
-                    "this is a brilliant post. 11/10", user));
+                    "this is a brilliant post. 11/10", user, categories));
             add(new Post(3L, "A new Post",
-                    "this is a brilliant post. 12/10", user));
+                    "this is a brilliant post. 12/10", user, categories));
         }};
     }
 
@@ -34,7 +41,7 @@ public class PostsController {
 
         if(id == 1) {
             return new Post(1L, "A new Post",
-                    "this is a brilliant post. 10/10", user);
+                    "this is a brilliant post. 10/10", user, categories);
         }else{
             return null;
         }
