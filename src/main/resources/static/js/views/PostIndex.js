@@ -23,7 +23,7 @@ export default function PostIndex(props) {
     
 }
 
-function getPostsComponent(){
+function getPostsComponent(posts){
 return posts.map(post =>`
                <div class="post">
                
@@ -31,24 +31,20 @@ return posts.map(post =>`
                     <h2 class="content-edit">${post.content}</h2>
                     <h2 class="username">Posted By: ${post.user.username}</h2>
                     <div class="categories">
-                    ${(post.categories).map(category => `
-                    </div>
-                    <h4 class="category">${category.name}</h4>
-        `)}
+                    ${getCategoriesComponent(post.categories)}
                     <button type="button" class="edit" data-id=${post.id}>Edit</button>
                         <button type="button" class="delete" data-id=${post.id}>Delete</button>
                     
-                 </div>
-                `).join('')
+                 </div>`
+                ).join('')
 };
 
 function getCategoriesComponent(categories){
 
     console.log(categories);
     return categories.map(category => {
-        `
+        return`
         <span>#${category.name}</span>
-        
         `
     }).join('')
 }
