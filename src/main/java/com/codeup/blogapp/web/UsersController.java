@@ -50,37 +50,37 @@ public class UsersController {
         }
     }
 
-    @PostMapping
-    private void createUser(@RequestBody User newUser){
-        System.out.println(newUser.getUsername());
-//        return new User;
-    }
+//    @PostMapping
+//    private void createUser(@RequestBody User newUser){
+//        System.out.println(newUser.getUsername());
+////        return new User;
+//    }
+//
+//    @PutMapping("{id}")
+//    private void updateUser(@PathVariable Long id, @RequestBody User user){
+////        System.out.println(user.getTitle());
+////        System.out.println(user.getContent());
+//        System.out.println(id);
+//
+//    }
+//
+//    @DeleteMapping("{id}")
+//    private void deleteUser(@PathVariable Long id){
+//        System.out.println(id);
+////        return new User;
+//    }
 
-    @PutMapping("{id}")
-    private void updateUser(@PathVariable Long id, @RequestBody User user){
-//        System.out.println(user.getTitle());
-//        System.out.println(user.getContent());
-        System.out.println(id);
-
-    }
-
-    @DeleteMapping("{id}")
-    private void deleteUser(@PathVariable Long id){
-        System.out.println(id);
-//        return new User;
-    }
-
-//    @GetMapping
+//    @RequestMapping
 //    private void findByUsername(@RequestParam String username){
 //        System.out.println(username);
 //    }
 //
-//    @GetMapping
+//    @RequestMapping
 //    private void findByEmail(@RequestParam String email){
 //        System.out.println(email);
 //    }
-
-//    @GetMapping
+//
+//    @RequestMapping
 //    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
 //        System.out.println(newPassword);
 //    }
