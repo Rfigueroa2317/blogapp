@@ -2,6 +2,7 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
+import com.codeup.blogapp.data.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,61 +14,42 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
+   private final UserRepository userRepository;
+
+    public UsersController(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 
     @GetMapping
     private List<User> getUsers() {
-        User user = new User(1L,"hello","random email","password", User.Role.USER, null);
-        List<Post> posts = new ArrayList<>(){{
-            add(new Post(1L, "Random",
-                    "random email", user, null));
+        return userRepository.findAll();
 
-            add(new Post(2L, "Random",
-                    "random email", user, null));
-
-            add(new Post(3L, "Random",
-                    "random email", user, null));
-        }};
-        return new ArrayList<>() {{
-            add(new User(1L, "Random",
-                    "random email", "password", User.Role.USER, posts));
-
-            add(new User(2L, "Random",
-                    "random email", "password", User.Role.USER, posts));
-
-            add(new User(3L, "Random",
-                    "random email", "password", User.Role.USER, posts));
-        }};
     }
 
     @GetMapping("/{id}")
     private User getUserById(@PathVariable Long id){
         // /api/posts/1
-        if(id == 1) {
-            return new User(1L, "Random",
-                    "random email", "password", User.Role.USER, null);
-        }else{
-            return null;
-        }
+       return userRepository.getById(id);
     }
 
     @PostMapping
     private void createUser(@RequestBody User newUser){
         System.out.println(newUser.getUsername());
-//        return new User;
+        userRepository.save(newUser);
     }
 
     @PutMapping("{id}")
-    private void updateUser(@PathVariable Long id, @RequestBody User user){
+    private void updateUser(@PathVariable Long id, @RequestBody User userToUpdate){
 //        System.out.println(user.getTitle());
 //        System.out.println(user.getContent());
         System.out.println(id);
-
+        userRepository.save(userToUpdate);
     }
 
     @DeleteMapping("{id}")
     private void deleteUser(@PathVariable Long id){
         System.out.println(id);
-//        return new User;
+        userRepository.deleteById(id);
     }
 
     @GetMapping("/findByUsername")

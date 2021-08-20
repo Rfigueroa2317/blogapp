@@ -1,11 +1,21 @@
 package com.codeup.blogapp.data;
 
+import javax.persistence.*;
 import java.util.Collection;
 
+
+@Entity
+@Table(name="categories")
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
     private Collection<Post> posts;
 
     public Category() {

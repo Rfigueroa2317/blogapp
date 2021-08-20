@@ -1,6 +1,7 @@
 package com.codeup.blogapp.data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -12,21 +13,25 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 120)
+    @Column(nullable = false)
     private String username;
 
+    @Email
     @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 //    private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role = Role.USER;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
     private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};
-
 
     public User(long id, String username, String email, String password, Role role, Collection<Post> posts /*, LocalDateTime createdAt */) {
         this.id = id;

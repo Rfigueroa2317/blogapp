@@ -19,9 +19,16 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="post_category",
+            joinColumns = {@JoinColumn(name="post_id")},
+            inverseJoinColumns = {@JoinColumn(name="category_id")}
+    )
     private Collection<Category> categories;
 
     public Post(Long id, String title, String content, User user, Collection<Category> categories) {
