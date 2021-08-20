@@ -1,16 +1,27 @@
 package com.codeup.blogapp.data;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 120)
     private String username;
+
+    @Column(nullable = false)
     private String email;
+
     private String password;
 //    private LocalDateTime createdAt;
     private Role role = Role.USER;
+
     private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};
