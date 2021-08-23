@@ -1,21 +1,24 @@
 package com.codeup.blogapp.data;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
 
 @Entity
-@Table(name="categories")
+@Table(name = "categories")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
 
     @ManyToMany(mappedBy = "categories")
+    @JsonManagedReference
     private Collection<Post> posts;
 
     public Category() {
