@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/posts",headers = "Accept=application/json")
+@RequestMapping(value = "/api/posts",headers = "Accept=application/json",produces = "application/json")
 public class PostsController {
 
     private final PostsRepository postsRepository;

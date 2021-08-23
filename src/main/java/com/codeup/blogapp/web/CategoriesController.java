@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/categories", headers = "Accept=application/json")
+@RequestMapping(value = "/api/categories", headers = "Accept=application/json", consumes = "application/json")
 public class CategoriesController {
 
     private final CategoriesRepository categoriesRepository;
@@ -30,7 +30,7 @@ public class CategoriesController {
     @GetMapping("/{categories}")
     private Category getPostsByCategory(@RequestParam String categoryName) {
 
-        return categoriesRepository.getById(id);
+        return categoriesRepository.findByName(categoryName);
 
     }
 }

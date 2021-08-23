@@ -1,10 +1,11 @@
 package com.codeup.blogapp.data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Entity
@@ -24,24 +25,22 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-//    private LocalDateTime createdAt;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "id")
-    @JsonBackReference
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
+    @JsonManagedReference
     private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};
 
-    public User(long id, String username, String email, String password, Role role, Collection<Post> posts /*, LocalDateTime createdAt */) {
+    public User(long id, String username, String email, String password, Role role, Collection<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-//        this.createdAt = createdAt;
         this.role = role;
         this.posts = posts;
     }

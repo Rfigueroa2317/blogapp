@@ -32,7 +32,7 @@ public class UsersController {
        return userRepository.getById(id);
     }
 
-    @PostMapping
+    @PostMapping("{id}")
     private void createUser(@RequestBody User newUser){
         System.out.println(newUser.getUsername());
         userRepository.save(newUser);

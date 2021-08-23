@@ -1,6 +1,7 @@
 package com.codeup.blogapp.data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -23,12 +24,12 @@ public class Post {
     private String content;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="post_category",
             joinColumns = {@JoinColumn(name="post_id")},
@@ -90,46 +91,6 @@ public class Post {
     public Collection<Category> getCategories() {
         return categories;
     }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<PostImage> images;
-
-    @Entity
-    @Table(name = "post_images")
-    public class PostImage {
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private long id;
-
-        @Column(nullable = false)
-        private String path;
-
-        @ManyToOne
-        @JoinColumn (name = "post_id")
-        private Post post;
-    }
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="post_category",
-            joinColumns={@JoinColumn(name="post_id")},
-            inverseJoinColumns={@JoinColumn(name="category_id")}
-    )
-    private List<PostCategory> categories;
-
-    @Entity
-    @Table(name="categories")
-    public class Category {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private long id;
-
-        @Column(nullable = false)
-        private String name;
-
-        @ManyToMany(mappedBy = "categories")
-        private List<Post> posts;
-    }
-
 
 }
 
