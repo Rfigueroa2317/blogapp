@@ -1,5 +1,6 @@
 package com.codeup.blogapp.data;
 
+import com.codeup.blogapp.services.EmailService;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -96,6 +97,7 @@ public class Post {
     public Collection<Category> getCategories() {
         return categories;
     }
+
 
 }
 

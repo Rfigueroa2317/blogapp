@@ -3,6 +3,8 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.PostsRepository;
+import com.codeup.blogapp.services.EmailService;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,9 +15,11 @@ import java.util.List;
 public class PostsController {
 
     private final PostsRepository postsRepository;
+    private final EmailService emailService;
 
-   public PostsController(PostsRepository postsRepository){
+   public PostsController(PostsRepository postsRepository, EmailService emailService){
        this.postsRepository = postsRepository;
+       this.emailService = emailService;
    }
 
     @GetMapping
@@ -51,6 +55,7 @@ public class PostsController {
         System.out.println(id);
         postsRepository.deleteById(id);
     }
+
 
     // curl is for your terminal to try
 
