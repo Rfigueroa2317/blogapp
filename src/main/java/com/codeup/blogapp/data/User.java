@@ -1,6 +1,7 @@
 package com.codeup.blogapp.data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -31,7 +32,7 @@ public class User {
     private Role role = Role.USER;
 
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "user")
-    @JsonManagedReference
+    @JsonIgnoreProperties("user")
     private Collection<Post> posts;
 
     public enum Role {USER, ADMIN};
