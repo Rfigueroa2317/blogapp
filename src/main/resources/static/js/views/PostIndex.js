@@ -28,6 +28,7 @@ export default function PostIndex(props) {
 }
 
 function getPostsComponent(posts){
+    console.log(posts)
 return posts.map(post =>`
                <div class="post">
                

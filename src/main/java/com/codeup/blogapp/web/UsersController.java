@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -53,18 +53,27 @@ public class UsersController {
     }
 
     @GetMapping("/findByUsername")
-    private void findByUsername(@RequestParam String username){
+    private User findByUsername(@RequestParam String username, Collection<Post> posts){
         System.out.println(username);
+        if (username.equals(" ")) {
+            return new User(1L, " ", " ", "password", User.Role.USER, posts);
+        }
+        return null;
     }
 
     @GetMapping("/findByEmail")
-    private void findByEmail(@RequestParam String email){
+    private User findByEmail(@RequestParam String email, Collection<Post> posts){
         System.out.println(email);
+        if(email.equals(" ")) {
+            return new User(1L, "username", "username@email.com", "password", User.Role.USER, posts);
+        }
+        return null;
     }
 
     @PutMapping("/updatePassword/{id}")
     private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
         System.out.println(newPassword);
+        userRepository.getById(id).setPassword(newPassword);
     }
 
     // curl is for your terminal to try

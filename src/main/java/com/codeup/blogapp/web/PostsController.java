@@ -28,6 +28,7 @@ public class PostsController {
     private Post getPostById(@PathVariable Long id){
         // /api/posts/1
         return postsRepository.getById(id);
+//                .get();
     }
 
     @PostMapping
