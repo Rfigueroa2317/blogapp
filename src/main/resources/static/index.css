@@ -1,0 +1,14 @@
+body {
+    background: #202731;
+    font-family: 'Amatic SC', serif;
+    color: aliceblue;
+}
+
+h1 {
+    display: flex;
+    text-align: center;
+}
+
+.background-theme {
+    background-image: url("black-white-waves.svg");
+}
