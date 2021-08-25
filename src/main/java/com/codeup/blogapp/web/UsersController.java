@@ -29,7 +29,7 @@ public class UsersController {
     @GetMapping("/{id}")
     private User getUserById(@PathVariable Long id){
         // /api/posts/1
-       return userRepository.getById(id);
+       return userRepository.findById(id).get();
     }
 
     @PostMapping("{id}")

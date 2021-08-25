@@ -2,8 +2,8 @@ package com.codeup.blogapp.security;
 
 import com.codeup.blogapp.errors.CustomAccessDeniedHandler;
 import com.codeup.blogapp.errors.CustomAuthenticationEntryPoint;
-import com.example.restblog.errors.CustomAccessDeniedHandler;
-import com.example.restblog.errors.CustomAuthenticationEntryPoint;
+//import com.example.restblog.errors.CustomAccessDeniedHandler;
+//import com.example.restblog.errors.CustomAuthenticationEntryPoint;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;

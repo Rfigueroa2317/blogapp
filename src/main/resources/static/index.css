@@ -1,14 +1,13 @@
 body {
     background: #202731;
     font-family: 'Amatic SC', serif;
+    text-align: center;
+    font-size: 35px;
     color: aliceblue;
+    justify-content: space-around;
 }
 
 h1 {
     display: flex;
     text-align: center;
-}
-
-.background-theme {
-    background-image: url("black-white-waves.svg");
 }

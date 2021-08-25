@@ -27,11 +27,11 @@ public class CategoriesController {
         return categoriesRepository.getById(id);
     }
 
-    @GetMapping("/{categories}")
-    private Category getPostsByCategory(@RequestParam String categoryName) {
-
-        return categoriesRepository.findByName(categoryName);
-
-    }
+//    @GetMapping("/{categories}")
+//    private Category getPostsByCategory(@RequestParam String categoryName) {
+//
+//        return categoriesRepository.findByName(categoryName);
+//
+//    }
 }
 
