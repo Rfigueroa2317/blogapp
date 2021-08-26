@@ -35,7 +35,7 @@ public class User {
     @JsonIgnoreProperties("user")
     private Collection<Post> posts;
 
-    public enum Role {USER, ADMIN};
+    public enum Role {USER, ADMIN}
 
     public User(long id, String username, String email, String password, Role role, Collection<Post> posts) {
         this.id = id;

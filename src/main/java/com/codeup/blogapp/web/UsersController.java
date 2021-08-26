@@ -55,8 +55,8 @@ public class UsersController {
     @GetMapping("/findByUsername")
     private User findByUsername(@RequestParam String username, Collection<Post> posts){
         System.out.println(username);
-        if (username.equals(" ")) {
-            return new User(1L, " ", " ", "password", User.Role.USER, posts);
+        if (username.equals("username")) {
+            return new User(1L, "username", "username@email.com", "password", User.Role.USER, posts);
         }
         return null;
     }
