@@ -3,6 +3,7 @@ package com.codeup.blogapp.web;
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import com.codeup.blogapp.data.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,10 +15,12 @@ import java.util.List;
 @RequestMapping(value = "/api/users", headers = "Accept=application/json")
 public class UsersController {
 
-   private final UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsersController(UserRepository userRepository){
+    public UsersController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -27,19 +30,20 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    private User getUserById(@PathVariable Long id){
+    private User getUserById(@PathVariable Long id) {
         // /api/posts/1
-       return userRepository.findById(id).get();
+        return userRepository.findById(id).get();
     }
 
-    @PostMapping("{id}")
-    private void createUser(@RequestBody User newUser){
+    @PostMapping("/create")
+    private void createUser(@RequestBody User newUser) {
         System.out.println(newUser.getUsername());
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.save(newUser);
     }
 
     @PutMapping("{id}")
-    private void updateUser(@PathVariable Long id, @RequestBody User userToUpdate){
+    private void updateUser(@PathVariable Long id, @RequestBody User userToUpdate) {
 //        System.out.println(user.getTitle());
 //        System.out.println(user.getContent());
         System.out.println(id);
@@ -47,13 +51,13 @@ public class UsersController {
     }
 
     @DeleteMapping("{id}")
-    private void deleteUser(@PathVariable Long id){
+    private void deleteUser(@PathVariable Long id) {
         System.out.println(id);
         userRepository.deleteById(id);
     }
 
     @GetMapping("/findByUsername")
-    private User findByUsername(@RequestParam String username, Collection<Post> posts){
+    private User findByUsername(@RequestParam String username, Collection<Post> posts) {
         System.out.println(username);
         if (username.equals("username")) {
             return new User(1L, "username", "username@email.com", "password", User.Role.USER, posts);
@@ -62,16 +66,16 @@ public class UsersController {
     }
 
     @GetMapping("/findByEmail")
-    private User findByEmail(@RequestParam String email, Collection<Post> posts){
+    private User findByEmail(@RequestParam String email, Collection<Post> posts) {
         System.out.println(email);
-        if(email.equals(" ")) {
+        if (email.equals(" ")) {
             return new User(1L, "username", "username@email.com", "password", User.Role.USER, posts);
         }
         return null;
     }
 
     @PutMapping("/updatePassword/{id}")
-    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword){
+    private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword) {
         System.out.println(newPassword);
         userRepository.getById(id).setPassword(newPassword);
     }

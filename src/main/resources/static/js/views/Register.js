@@ -23,6 +23,7 @@ export default function Register(registration) {
         </body>
     </html>`;
 }
+
 export function RegisterEvent() {
     $("#register-btn").click(function () {
         let user = {
@@ -35,9 +36,9 @@ export function RegisterEvent() {
             header: {"Content-type": "application/json"},
             body: JSON.stringify(user)
         }
-        fetch("http://localhost:8080/api/users").then((response) => {
+        fetch("http://localhost:8080/api/users/create", request).then((response) => {
             console.log(request.status);
-            createView("/posts");
+            createView("/");
         });
     })
 }
