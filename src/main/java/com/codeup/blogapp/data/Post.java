@@ -31,7 +31,7 @@ public class Post {
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+            cascade = {CascadeType.DETACH, CascadeType.REFRESH},
             targetEntity = Category.class)
     @JoinTable(
             name="post_category",
@@ -40,7 +40,7 @@ public class Post {
             foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
             inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
     )
-//    @JsonIgnore
+    @JsonIgnoreProperties("posts")
     private Collection<Category> categories;
 
     public Post(Long id, String title, String content, User user, Collection<Category> categories) {

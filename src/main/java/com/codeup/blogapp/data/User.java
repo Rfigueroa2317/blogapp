@@ -1,10 +1,6 @@
 package com.codeup.blogapp.data;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Collection;
@@ -37,7 +33,7 @@ public class User {
 
     public enum Role {USER, ADMIN}
 
-    public User(long id, String username, String email, String password, Role role, Collection<Post> posts) {
+    public User(Long id, String username, String email, String password, Role role, Collection<Post> posts) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -53,7 +49,7 @@ public class User {
     public User() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

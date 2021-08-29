@@ -14,7 +14,7 @@ export default function Register(registration) {
                 <label for="username">Username</label>
                 <input id="username" name="username" type="text"/>
                 <label for="email">Email</label>
-                <input id="email" name="email" type="text"/>
+                <input id="email" name="email" type="email"/>
                 <label for="password">Password</label>
                 <input id="password" name="password" type="password"/>
                 <input id="register-btn" type="button" value="Register"/>
@@ -33,11 +33,12 @@ export function RegisterEvent() {
         }
         let request = {
             method: "POST",
-            header: {"Content-type": "application/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         }
+        console.log(request);
         fetch("http://localhost:8080/api/users/create", request).then((response) => {
-            console.log(request.status);
+            console.log(response.status);
             createView("/");
         });
     })
