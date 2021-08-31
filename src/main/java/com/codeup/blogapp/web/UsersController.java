@@ -3,7 +3,9 @@ package com.codeup.blogapp.web;
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import com.codeup.blogapp.data.UserRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,7 +37,16 @@ public class UsersController {
         return userRepository.findById(id).get();
     }
 
-    @PostMapping("/create")
+    @GetMapping("/me")
+    private User getCurrentUser(OAuth2Authentication authentication){
+        String email = authentication.getName();
+        return userRepository.findByEmail(email).get();
+        // If you get errors this will probably be the reason \\
+    }
+
+
+    @PostMapping
+    @PreAuthorize("!hasAuthority('USER')") // new line \\
     private void createUser(@RequestBody User newUser) {
         System.out.println(newUser.getUsername());
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
