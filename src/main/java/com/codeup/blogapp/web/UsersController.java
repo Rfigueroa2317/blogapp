@@ -86,6 +86,7 @@ public class UsersController {
     }
 
     @PutMapping("/updatePassword/{id}")
+    @PreAuthorize("!hasAuthority('USER') || (#oldPassword != null && !#oldPassword.isEmplty())")
     private void updatePassword(@PathVariable Long id, @RequestParam(required = false) String oldPassword, @Valid @Size(min = 3) @RequestParam String newPassword) {
         System.out.println(newPassword);
         userRepository.getById(id).setPassword(newPassword);
